@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antrian Tiket Konser CORTIS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎵</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-ticket-alt"></i> Antrian Tiket Konser CORTIS</h1>
+            <p class="subtitle">Sistem Antrian Online untuk Pembelian Tiket</p>
+            <div class="current-time" id="current-time"></div>
+        </header>
+
+        <main>
+            <div class="dashboard">
+                <section class="control-panel">
+                    <h2><i class="fas fa-cogs"></i> Panel Kontrol Operator</h2>
+                    
+                    <div class="queue-management">
+                        <h3><i class="fas fa-list-ol"></i> Pengaturan Antrian</h3>
+                        <div class="queue-controls">
+                            <div class="queue-input-group">
+                                <label for="queue-number"><i class="fas fa-hashtag"></i> Nomor Antrian</label>
+                                <input type="number" id="queue-number" min="1" value="1">
+                                <div class="queue-buttons">
+                                    <button id="decrease-btn" class="btn-secondary"><i class="fas fa-minus"></i> Kurangi</button>
+                                    <button id="increase-btn" class="btn-secondary"><i class="fas fa-plus"></i> Tambah</button>
+                                    <button id="reset-btn" class="btn-secondary"><i class="fas fa-redo"></i> Reset ke 1</button>
+                                </div>
+                            </div>
+                            
+                            <div class="operator-selection">
+                                <h3><i class="fas fa-user-tie"></i> Pilih Operator</h3>
+                                <div class="operator-grid" id="operator-grid">
+                                    <!-- Operator akan di-generate oleh JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="call-section">
+                            <div class="current-display">
+                                <div class="current-queue">
+                                    <span class="label">Antrian Saat Ini:</span>
+                                    <span id="current-queue" class="queue-number">-</span>
+                                </div>
+                                <div class="current-operator">
+                                    <span class="label">Operator Tujuan:</span>
+                                    <span id="current-operator" class="operator-name">-</span>
+                                </div>
+                            </div>
+                            
+                            <button id="call-btn" class="call-btn">
+                                <i class="fas fa-bullhorn"></i> PANGGIL ANTRIAN
+                            </button>
+                            <button id="next-btn" class="btn-secondary">
+                                <i class="fas fa-forward"></i> LANJUT KE ANTRIAN BERIKUTNYA
+                            </button>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="queue-display">
+                    <h2><i class="fas fa-tv"></i> Tampilan Antrian</h2>
+                    <div class="display-board">
+                        <div class="display-header">
+                            <div class="concert-title">KONSER CORTIS</div>
+                            <div class="display-time" id="display-time"></div>
+                        </div>
+                        
+                        <div class="now-serving">
+                            <div class="now-serving-label">SEDANG DILAYANI</div>
+                            <div class="now-serving-content">
+                                <div class="display-queue-number" id="display-queue-number">--</div>
+                                <div class="display-operator" id="display-operator">Operator: --</div>
+                            </div>
+                        </div>
+                        
+                        <div class="next-queue">
+                            <div class="next-label">ANTRIAN BERIKUTNYA</div>
+                            <div class="next-content">
+                                <div class="next-number" id="next-queue-number">--</div>
+                            </div>
+                        </div>
+                        
+                        <div class="operator-status">
+                            <h3><i class="fas fa-users"></i> Status Operator</h3>
+                            <div class="status-grid" id="status-grid">
+                                <!-- Status operator akan di-generate oleh JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <section class="queue-history">
+                <h2><i class="fas fa-history"></i> Riwayat Panggilan</h2>
+                <div class="history-container">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Waktu</th>
+                                <th>Nomor Antrian</th>
+                                <th>Operator</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-table-body">
+                            <!-- Riwayat panggilan akan diisi oleh JavaScript -->
+                        </tbody>
+                    </table>
+                    <button id="clear-history" class="btn-secondary"><i class="fas fa-trash"></i> Hapus Riwayat</button>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>Sistem Antrian Tiket Konser CORTIS &copy; <span id="current-year"></span> | Developed by Web Developer Professional</p>
+            <div class="audio-controls">
+                <span><i class="fas fa-volume-up"></i> Kontrol Suara:</span>
+                <button id="test-voice-btn" class="btn-small"><i class="fas fa-play"></i> Uji Suara</button>
+                <button id="mute-btn" class="btn-small"><i class="fas fa-volume-mute"></i> Matikan Suara</button>
+                <span id="audio-status" class="audio-status-active"><i class="fas fa-check-circle"></i> Suara Aktif</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
